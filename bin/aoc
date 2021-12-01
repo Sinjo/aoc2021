@@ -22,3 +22,5 @@ solution = Object.const_get("Day#{options[:day]}")
 input_path = File.expand_path("#{__dir__}/../#{options[:input]}")
 input = File.read(input_path)
 result = solution.new.public_send("part_#{options[:part]}".to_sym, input)
+
+puts result
