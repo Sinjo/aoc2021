@@ -41,4 +41,61 @@ class Day02
 
     horizontal_position * depth
   end
+
+  def part_a_cursed(input)
+    apply_part_a_extension
+    eval input
+    @horizontal_position * @depth
+  end
+
+  def part_b_cursed(input)
+    apply_part_b_extension
+    eval input
+    @horizontal_position * @depth
+  end
+
+  private
+
+  def apply_part_a_extension
+    @horizontal_position = 0
+    @depth = 0
+    self.extend(PartAExtension)
+  end
+
+  def apply_part_b_extension
+    @horizontal_position = 0
+    @depth = 0
+    @aim = 0
+    self.extend(PartBExtension)
+  end
+end
+
+module PartAExtension
+  def forward(i)
+    @horizontal_position += Integer(i)
+  end
+
+  def down(i)
+    @depth += Integer(i)
+  end
+
+  def up(i)
+    @depth -= Integer(i)
+  end
+end
+
+module PartBExtension
+  def forward(i)
+    forward_units = Integer(i)
+    @horizontal_position += forward_units
+    @depth += @aim * forward_units
+  end
+
+  def down(i)
+    @aim += Integer(i)
+  end
+
+  def up(i)
+    @aim -= Integer(i)
+  end
 end
